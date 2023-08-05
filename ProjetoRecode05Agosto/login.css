@@ -1,0 +1,46 @@
+body {
+    background-color: #f0f7fb;
+  }
+  .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #007bff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .form-group label {
+    color: #f0f7fb;
+  }
+  .btn-login {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  .btn-login:hover {
+    background-color: #003c80;
+    border-color: #003c80;
+  }
+  .btn-signup {
+    color: #007bff;
+  }
+  .btn-signup:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  .agency-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 50%;
+    background-color: #f0f7fb;
+    text-align: center;
+    line-height: 100px;
+    font-size: 24px;
+    color: #007bff;
+  }

@@ -1,0 +1,127 @@
+VAR
+    MAX_CLIENTES: INTEGER <- 100
+    MAX_DESTINOS: INTEGER <- 50
+
+    clientes: ARRAY[1..MAX_CLIENTES] OF RECORD
+        nome: STRING
+        idade: INTEGER
+        telefone: STRING
+    END
+
+    destinos: ARRAY[1..MAX_DESTINOS] OF RECORD
+        nome_destino: STRING
+        pais: STRING
+        duracao: INTEGER
+        preco: REAL
+    END
+
+    num_clientes: INTEGER <- 0
+    num_destinos: INTEGER <- 0
+
+FUNCTION menu_principal()
+BEGIN
+    DISPLAY "Menu Principal:"
+    DISPLAY "1. Cadastro de Cliente"
+    DISPLAY "2. Cadastro de Destino"
+    DISPLAY "3. Consulta de Clientes"
+    DISPLAY "4. Consulta de Destinos"
+    DISPLAY "0. Sair"
+END FUNCTION
+
+FUNCTION cadastrar_cliente()
+BEGIN
+    IF num_clientes < MAX_CLIENTES THEN
+        num_clientes <- num_clientes + 1
+
+        DISPLAY "Cadastro de Cliente"
+        DISPLAY "Nome: "
+        INPUT clientes[num_clientes].nome
+        DISPLAY "Idade: "
+        INPUT clientes[num_clientes].idade
+        DISPLAY "Telefone: "
+        INPUT clientes[num_clientes].telefone
+
+        DISPLAY "Cliente cadastrado com sucesso!"
+    ELSE
+        DISPLAY "Limite de clientes atingido. Impossível cadastrar."
+    END IF
+END FUNCTION
+
+FUNCTION cadastrar_destino()
+BEGIN
+    IF num_destinos < MAX_DESTINOS THEN
+        num_destinos <- num_destinos + 1
+
+        DISPLAY "Cadastro de Destino"
+        DISPLAY "Nome do Destino: "
+        INPUT destinos[num_destinos].nome_destino
+        DISPLAY "País: "
+        INPUT destinos[num_destinos].pais
+        DISPLAY "Duração (em dias): "
+        INPUT destinos[num_destinos].duracao
+        DISPLAY "Preço: "
+        INPUT destinos[num_destinos].preco
+
+        DISPLAY "Destino cadastrado com sucesso!"
+    ELSE
+        DISPLAY "Limite de destinos atingido. Impossível cadastrar."
+    END IF
+END FUNCTION
+
+FUNCTION consultar_clientes()
+BEGIN
+    IF num_clientes > 0 THEN
+        FOR i FROM 1 TO num_clientes DO
+            DISPLAY "Cliente ", i
+            DISPLAY "Nome: ", clientes[i].nome
+            DISPLAY "Idade: ", clientes[i].idade
+            DISPLAY "Telefone: ", clientes[i].telefone
+            DISPLAY "-------------------------"
+        END FOR
+    ELSE
+        DISPLAY "Nenhum cliente cadastrado."
+    END IF
+END FUNCTION
+
+FUNCTION consultar_destinos()
+BEGIN
+    IF num_destinos > 0 THEN
+        FOR i FROM 1 TO num_destinos DO
+            DISPLAY "Destino ", i
+            DISPLAY "Nome do Destino: ", destinos[i].nome_destino
+            DISPLAY "País: ", destinos[i].pais
+            DISPLAY "Duração (em dias): ", destinos[i].duracao
+            DISPLAY "Preço: ", destinos[i].preco
+            DISPLAY "-------------------------"
+        END FOR
+    ELSE
+        DISPLAY "Nenhum destino cadastrado."
+    END IF
+END FUNCTION
+
+PROCEDURE main()
+BEGIN
+    INTEGER opcao
+
+    REPEAT
+        menu_principal()
+        INPUT opcao
+
+        SWITCH opcao DO
+            CASE 1:
+                cadastrar_cliente()
+            CASE 2:
+                cadastrar_destino()
+            CASE 3:
+                consultar_clientes()
+            CASE 4:
+                consultar_destinos()
+            CASE 0:
+                DISPLAY "Saindo do programa..."
+            OTHERWISE:
+                DISPLAY "Opção inválida. Tente novamente."
+        END SWITCH
+    UNTIL opcao = 0
+END PROCEDURE
+
+main()
